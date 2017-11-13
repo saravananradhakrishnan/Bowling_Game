@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BowlingProject</title>
+    <%= csrf_meta_tags %>
+    <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"%>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "jquery.simple-popup.min"%>
+    <%= stylesheet_link_tag    'jquery.simple-popup.min' %>
+    <%= stylesheet_link_tag    'jquery.simple-popup.settings' %>
+  </head>
+
+  <body>
+  	<h1 align="center">Welcome to Strike Bowling Club!</h1>
+    <%= yield %>
+  </body>
+</html>

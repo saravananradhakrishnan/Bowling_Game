@@ -1,0 +1,31 @@
+<ul class="tab">
+  <li><a href="javascript:void(0)" class="tablinks active" onclick="openCity(event, 'user')">List User</a></li>
+  <li><a href="<%= new_game_path%>" class="tablinks" onclick="">New Game</a></li>
+  <li><a href="<%= games_path%>" class="tablinks" >Scoreboard</a></li>
+</ul>
+<div id="user" class="tabcontent" style='display: block;'>
+	<h3><b>Register User to Play Game</b></h3>
+	<br/>
+	<%= form_for @user ,as: :user, method: (@user.id.blank? ? "post" : "put") do |f|%>
+	 <div class="row">
+	  <div class="col-md-1"><%= f.label :name %></div>
+	  <div class="col-md-2"><%= f.text_field :name %></div>
+	  </div>
+	  <div class="row">
+	  	<div class="col-md-1"><%= f.label :mobile %></div>
+	  	<div class="col-md-2"><%= f.text_field :mobile %></div>
+	  </div>
+	  <br/>
+	  <div class="row">
+	  	<div class="col-md-1"></div>
+	  	<div class="col-md-2"><%= f.submit "Create" %></div>
+	  </div>
+	<% end %>
+
+	<%= render :partial => 'list_users'%>
+</div>
+<div id="new" class="tabcontent">
+
+</div>
+<div id="scoreboard" class="tabcontent">
+</div>

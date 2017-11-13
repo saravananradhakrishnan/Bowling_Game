@@ -1,0 +1,67 @@
+<ul class="tab">
+  <li><a href="<%= new_user_path%>" class="tablinks" onclick="">List User</a></li>
+  <li><a href="javascript:void(0)" class="tablinks active" onclick="openCity(event, 'new')">New Game</a></li>
+  <li><a href="<%= games_path%>" class="tablinks" onclick="openCity(event, 'Scoreboard')">Scoreboard</a></li>
+</ul>
+<div id="user" class="tabcontent">
+	
+</div>
+<div id="new" class="tabcontent" style="display: block;">
+<div class="panel panel-default">
+  <div class="panel-heading">Input Details</div>
+	<div class="panel-body">
+		<%= form_for @game, :url => games_path, :method => :post do |g| %>
+		  <%= hidden_field_tag "game[game_id]" ,@time%>
+		  <%= hidden_field_tag 'frame_count',0%>
+		   <div  class='row'>
+		  	<div class="col-md-4"><%= select_tag 'user_id',options_for_select(User.all.map{|a| ["#{a.name}-#{a.try(:mobile)}",a.id]}),:style => 'width: 200px;'%>
+		  	</div>
+		  	<div class="col-md-2"><%= button_tag 'Start Game',:type => 'button',:class => 'new_game'%></div>
+		  </div>
+		  <br/>
+		  <div  class='row show_game' style="display: none">
+			  <div class="col-md-2">Enter Points</div>
+			  <div class="col-md-3"><%= text_field_tag "game[try1]",0,placeholder: "Try 1" ,:required => true %></div>
+			  <div class="col-md-3"><%= text_field_tag "game[try2]" ,0,placeholder: "Try 2",:required => true%></div>
+			  <div class="col-md-3"><%= g.submit "Save",:class => 'save_score','attr-id' => 1 %></div>
+		  </div>
+		<% end %>
+    </div>
+  </div>
+  <br/>
+<div class="panel panel-default score_details show_game" style="display: none">
+   <div class="panel-heading">You Can view the score here</div>
+     <div class="panel-body">
+     	<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">Frame</th>
+		      <th scope="col">Try1</th>
+		      <th scope="col">Try2</th>
+		      <th scope="col">Total</th>
+		      <th scope="col">Sequence</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+
+		</tbody>
+		<%= button_tag 'End Game',:type => 'button',:class => 'end_game'%>
+	  </table>
+	</div>
+</div>
+
+<div class="frame-score" style="display: none;">
+	<div class="row">
+		<%= hidden_field_tag 'score_id','',:class => 'score_id'%>
+		<div class="col-md-1" name = 'frame' style="text-align: center;"></div>
+		<div class="col-md-1" name = 'try1' style="text-align: center;"></div>
+		<div class="col-md-1" name = 'try2' style='color: blue;'></div>
+		<div class="col-md-1" name = 'total' style='color: blue;'></div>
+		<div class="col-md-1" name = 'sequence' style='color: blue;'></div>
+	</div>
+</div>
+
+</div>
+<div id="scoreboard" class="tabcontent">
+</div>
+

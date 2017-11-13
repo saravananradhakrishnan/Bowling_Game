@@ -1,0 +1,114 @@
+<ul class="tab">
+  <li><a href="<%= new_user_path%>" class="tablinks">List User</a></li>
+  <li><a href="<%= new_game_path%>" class="tablinks" onclick="">New Game</a></li>
+  <li><a href="javascript:void(0)" class="tablinks active" onclick="openCity(event, 'scoreboard')">Scoreboard</a></li>
+</ul>
+<div id="user" class="tabcontent" style='display: block;'>
+  
+</div>
+<div id="new" class="tabcontent">
+
+</div>
+<div id="scoreboard" class="tabcontent active" style="display: block;">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">User</th>
+      <th scope="col">Game Id</th>
+      <th scope="col">Frame</th>
+      <th scope="col">Score</th>
+      <th scope="col">View Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% (@games || []).each do |g| %>
+    <tr>
+      <td><%= g.user.name%></td>
+      <td><%= g.game_id%></td>
+      <td><%= g.frame_count%></td>
+      <td><%= g.score%></td>
+      <td><%= link_to 'View Detail', "javascript:void(0)" ,:class=>"label label-info show_score" ,"attr-game-id" => g.game_id,"attr-user-id" => g.user_id%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<div class="letspop" style="display: none;">
+  <h2>lets pop<br><small>click me</small></h2>
+</div>
+
+<!-- Overlay -->
+<div class="overlay"></div>
+<!-- Popup -->
+<div class="popup">
+  <div id="scoreboard_split">
+  </div>
+  <div class="close">X</div>
+</div>
+<script type="text/javascript">
+  $('.letspop').on('click', function() {
+  // The Overlay fades in
+  $(".overlay").fadeIn(200, function() {});
+  // The Popup fades in just after
+  $(".popup").fadeIn(600, function() {});
+});
+
+// The class's you click when you want to close the pop
+$('.overlay, .close').on('click', function() {
+  // The Overlay fades out slower
+  $(".overlay").fadeOut(600, function() {});
+  // The Popup fades out faster
+  $(".popup").fadeOut(200, function() {});
+});
+</script>
+<style type="text/css">
+*{padding: 0; margin: 0;}
+
+/* Lets Pop up */
+
+.letspop:hover{
+  cursor: pointer;
+}
+.overlay{
+  display: none; /* Default Hidden */
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background-color: rgba(0,0,0,0.6);
+  height: 100%;
+  width: 100%;
+} 
+.popup{
+  display: none; /* Default Hidden */
+  position: fixed;
+  left: 50%; 
+  top: 5%;
+  z-index: 2;
+  background-color: #fff;
+  height: auto;
+  width: auto;
+  overflow: hidden;
+  padding: 40px;
+  transform: translate(-50%, 0);
+}
+
+
+/* Bored stuff & extras*/
+
+.close{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: block;
+  color: #666666;
+  font-family: sans-serif;
+}
+.close:hover{
+  cursor: pointer;
+  color: #444444;
+}
+
+</style>
+

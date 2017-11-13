@@ -1,0 +1,23 @@
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">User</th>
+      <th scope="col">Game Id</th>
+      <th scope="col">Frame</th>
+      <th scope="col">Score</th>
+      <th scope="col">SubScore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% (@games || []).each do |g| %>
+    <tr>
+      <td><%= g.user.name%></td>
+      <td><%= g.game_id%></td>
+      <td><%= g.frame_id%></td>
+      <td><%= g.score%></td>
+      <td><%= g.subsequent_score%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
