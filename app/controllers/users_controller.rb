@@ -29,6 +29,15 @@ class UsersController < ApplicationController
   		redirect_to :new_user
   	end
   end
+  def update
+  	user = User.where(:id => params[:id]).first
+if user.update(user_params)
+  		msg = "User Create Sucessfully"
+  		redirect_to :new_user
+  	else
+  		msg = "Problem creating user please try after some time"
+  	end
+  end
 
   private
 
