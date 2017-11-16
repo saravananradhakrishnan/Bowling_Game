@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20171113071030) do
 
-  create_table "leaders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "leaders", force: :cascade do |t|
     t.integer "frame_count"
     t.integer "score"
     t.integer "user_id"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20171113071030) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "score_data", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "score_data", force: :cascade do |t|
     t.integer "user_id"
     t.integer "game_id"
     t.integer "frame_id"
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(version: 20171113071030) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "mobile"
     t.boolean "is_admin", default: false
